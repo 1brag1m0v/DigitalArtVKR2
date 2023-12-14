@@ -12,12 +12,10 @@
             <StackPanel Orientation="Vertical" Width="600" Background="#FF69818D">
                 <TextBlock FontFamily="Arial Black" Text="Набиева Лиана Рамилевна" TextWrapping="Wrap" FontSize="50"/>
                 <TextBlock x:Name="courseButton" MouseDown="TextBlock_MouseDown" Foreground="White" Background="{x:Null}" Text="КУРСЫ" FontFamily="Arial Black" Opacity="0.9" Padding="10" FontSize="50" Height="70" Margin="50,150,50,0" Width="220"/>
-                <TextBlock x:Name="testButton" MouseDown="testButton_MouseDown" Foreground="White" Background="{x:Null}" Text="ТЕСТЫ" FontFamily="Arial Black" Opacity="0.9" Padding="10" FontSize="50" Height="70" Margin="50,20,50,0" Width="220"/>
                 <TextBlock MouseDown="usersButton_MouseDown" x:Name="usersButton" Foreground="White" Background="{x:Null}" Text="ПОЛЬЗОВАТЕЛИ" FontFamily="Arial Black" Opacity="0.9" Padding="10" FontSize="50" Height="70" Margin="50,20,50,0" Width="490"/>
                 <TextBlock MouseDown="chatButton_MouseDown" x:Name="chatButton" Foreground="White" Background="{x:Null}" Text="ЧАТ" FontFamily="Arial Black" Opacity="0.9" FontSize="50" Padding="10" Height="70" Margin="50,20,50,0" Width="140"/>
-                <TextBlock x:Name="materialButton" Foreground="White" Background="{x:Null}" Text="МАТЕРИАЛ" FontFamily="Arial Black" Opacity="0.9" FontSize="50" Padding="10" Height="70" Margin="50,20,50,0" Width="340"/>
-                <Rectangle Fill="Black" Opacity="0.5" Height="200" Margin="0,190,0,0"/>
-                <TextBlock Foreground="White" Background="{x:Null}" Text="НАЗАД" FontFamily="Arial Black" Opacity="0.9" FontSize="50" Padding="10" TextAlignment="Right" Height="70" Margin="200,-280,50,0" MouseDown="TextBlock_MouseDown_1"/>
+                <Rectangle Fill="Black" Opacity="0.5" Height="200" Margin="0,385,0,0"/>
+                <TextBlock Foreground="White" Background="{x:Null}" Text="НАЗАД" FontFamily="Arial Black" Opacity="0.9" FontSize="50" Padding="10" TextAlignment="Right" Height="70" Margin="230,-280,50,0" MouseDown="TextBlock_MouseDown_1"/>
             </StackPanel>
             <StackPanel x:Name="usersList" Width="800" Margin="0,0,0,0" Visibility="Hidden">
                 <ScrollViewer MaxHeight="900" Height="900">
@@ -34,9 +32,9 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
-                <Button Content="Добавить" x:Name="addUserStackPanel" HorizontalAlignment="Center" FontSize="30" Background="Black" Foreground="AntiqueWhite" Height="50" Margin="0,40,0,0" materialDesign:ButtonAssist.CornerRadius="10" Click="Button_Click_4"/>
+                <Button Content="Добавить" x:Name="addUserStackPanel" HorizontalAlignment="Center" FontSize="30" Background="#495C66" Foreground="White" Height="50" Margin="0,40,0,0" materialDesign:ButtonAssist.CornerRadius="10" Click="Button_Click_4"/>
             </StackPanel>
-            <StackPanel Background="Gray" x:Name="chat" Width="800" Margin="-800,0,0,0" Visibility="Hidden">
+            <StackPanel Background="#69818D" x:Name="chat" Width="800" Margin="-800,0,0,0" Visibility="Hidden">
                 <ScrollViewer Background="White" MaxHeight="900" Height="900">
                     <ItemsControl x:Name="itemsControlMessage" Height="Auto" HorizontalAlignment="Left">
                         <ItemsControl.ItemsPanel>
@@ -47,7 +45,7 @@
                     </ItemsControl>
                 </ScrollViewer>
                 <TextBox x:Name="sendMessageBox" FontSize="30" Padding="10" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" Background="White" HorizontalAlignment="Center" Width="500" Height="60" Margin="-260,30,0,0"/>
-                <Button Content="Отправить" FontSize="30" HorizontalAlignment="Center" Height="60" FontFamily="Arial Black" Background="Black" Margin="530,-60,0,0" Click="Button_Click_3"/>
+                <Button Content="Отправить" FontSize="30" HorizontalAlignment="Center" Height="60" FontFamily="Arial Black" Background="#495C66" Foreground="Black" Margin="530,-60,0,0" Click="Button_Click_3"/>
             </StackPanel>
             <StackPanel x:Name="coursesList" Orientation="Vertical" Width="800" Background="White" Visibility="Hidden" Margin="-800,0,0,0">
                 <ScrollViewer MaxHeight="1000" Height="1000">

@@ -7,15 +7,15 @@
         xmlns:local="clr-namespace:DigitalArtVKR2"
         mc:Ignorable="d"
         Title="Новый модуль" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid Background="AntiqueWhite">
+    <Grid Background="#495C66">
         <TextBlock x:Name="lessonId" Visibility="Hidden"/>
         <Rectangle Fill="White" Width="600" Height="300" RadiusX="20" RadiusY="20"/>
         <StackPanel Margin="40" Width="600" Height="300" Orientation="Vertical">
             <Image Source="/Image1.png" Visibility="Hidden" x:Name="lessonMedia" Height="200" Width="250" Stretch="Fill" HorizontalAlignment="Center" Margin="-280,30,0,0"/>
-            <TextBox x:Name="lessonUrl" Visibility="Hidden" Background="AntiqueWhite" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="URL" HorizontalContentAlignment="Center" Width="140" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" Margin="-280,20,0,0"/>
-            <TextBox x:Name="moduleName" TextWrapping="Wrap" Background="AntiqueWhite" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Название модуля" HorizontalContentAlignment="Center" Padding="5" Width="230" Margin="0,-180,0,250"/>
-            <TextBox x:Name="moduleLessonsCount" TextWrapping="Wrap" Background="AntiqueWhite" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Количество пустых уроков" HorizontalContentAlignment="Center" Padding="5" Width="230" Margin="0,-230,0,250"/>
-            <Button x:Name="lessonEditButton" Margin="0,-230,0,250" Content="Добавить" Background="AntiqueWhite" Foreground="Black" Width="200" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="lessonEditButton_Click"/>
+            <TextBox x:Name="lessonUrl" Visibility="Hidden" Background="#495C66" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="URL" HorizontalContentAlignment="Center" Width="140" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" Margin="-280,20,0,0"/>
+            <TextBox x:Name="moduleName" Foreground="White" TextWrapping="Wrap" Background="#495C66" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Название модуля" HorizontalContentAlignment="Center" Padding="5" Width="230" Margin="0,-180,0,250"/>
+            <TextBox x:Name="moduleLessonsCount" Foreground="White" TextWrapping="Wrap" Background="#495C66" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Количество пустых уроков" HorizontalContentAlignment="Center" Padding="5" Width="230" Margin="0,-230,0,250"/>
+            <Button x:Name="lessonEditButton" Margin="0,-230,0,250" Content="Добавить" Background="#495C66" Foreground="White" Width="200" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="lessonEditButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -53,10 +53,8 @@ namespace DigitalArtVKR2
         private void ClearBackgrounds()
         {
             courseButton.Background = null;
-            testButton.Background = null;
             usersButton.Background = null;
             chatButton.Background = null;
-            materialButton.Background = null;
         }
 
         private void ClearTextBoxes()
@@ -211,7 +209,6 @@ namespace DigitalArtVKR2
             itemsControlMain.Items.Clear();
             ClearStackPanel();
             ClearBackgrounds();
-            testButton.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF596C75"));
         }
 
         private void chatButton_MouseDown(object sender, MouseButtonEventArgs e)
@@ -258,7 +255,7 @@ namespace DigitalArtVKR2
                 dateCreated = DateTime.Now,
                 senderID = Data.idemp,
                 Message = sendMessageBox.Text,
-                takerID = 1
+                takerID = -1
             };
             await supabase.From<Messages>().Insert(newMessage);
             LoadChat();
