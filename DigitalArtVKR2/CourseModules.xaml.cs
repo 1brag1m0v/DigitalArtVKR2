@@ -32,6 +32,7 @@ namespace DigitalArtVKR2
 
         public async void LoadLessons()
         {
+            itemsControlLessons.Items.Clear();
             var model = await App.madm.supabase.From<Lessons>().Get();
             var lessons = model.Models;
             foreach (var item in lessons)
@@ -48,6 +49,26 @@ namespace DigitalArtVKR2
         public void SetModulesData(Modules module)
         {
             nameModule.Text = module.Name;
+        }
+
+        public async void CreateOneEmptyLesson()
+        {
+            var newLesson = new Lessons()
+            {
+                Id = 24,
+                moduleID = modId,
+                Name = "empty",
+                Type = 1,
+                Media = "empty",
+                Text = "empty"
+            };
+            await App.madm.supabase.From<Lessons>().Insert(newLesson);
+            LoadLessons();
+            MessageBox.Show("Пустой урок добавлен.");
+        }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            CreateOneEmptyLesson();
         }
     }
 }

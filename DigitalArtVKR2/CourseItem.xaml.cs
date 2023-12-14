@@ -23,6 +23,7 @@ namespace DigitalArtVKR2
     {
 
         public int crsId = 0;
+        public string description;
 
         public CourseItem()
         {
@@ -33,7 +34,7 @@ namespace DigitalArtVKR2
         {
             courseId.Text = course.Id.ToString();
             nameCourse.Text = course.Name.ToUpper();
-            descCourse.Text = course.Description;
+            description = course.Description;
             if (course.difficultID == 1)
             {
                 difficultCourse.Text = "УРОВЕНЬ: НАЧАЛЬНЫЙ";
@@ -53,7 +54,7 @@ namespace DigitalArtVKR2
         {
             App.madm.itemId = int.Parse(courseId.Text);
             App.madm.courseName.Text = nameCourse.Text;
-            App.madm.courseDesc.Text = descCourse.Text;
+            App.madm.courseDesc.Text = description;
             if (difficultCourse.Text.Contains("НАЧАЛЬНЫЙ"))
             {
                 App.madm.courseLevel.Text = "НАЧАЛЬНЫЙ";
