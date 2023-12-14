@@ -1,0 +1,89 @@
+﻿<Window x:Class="DigitalArtVKR2.MenuAdmin"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DigitalArtVKR2"
+        mc:Ignorable="d"
+        Title="Меню администратора" Height="1080" Width="1920" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Vertical" Width="600" Background="#FF69818D">
+                <TextBlock FontFamily="Arial Black" Text="Набиева Лиана Рамилевна" TextWrapping="Wrap" FontSize="50"/>
+                <TextBlock x:Name="courseButton" MouseDown="TextBlock_MouseDown" Foreground="White" Background="{x:Null}" Text="КУРСЫ" FontFamily="Arial Black" Opacity="0.9" Padding="10" FontSize="50" Height="70" Margin="50,150,50,0" Width="220"/>
+                <TextBlock x:Name="testButton" MouseDown="testButton_MouseDown" Foreground="White" Background="{x:Null}" Text="ТЕСТЫ" FontFamily="Arial Black" Opacity="0.9" Padding="10" FontSize="50" Height="70" Margin="50,20,50,0" Width="220"/>
+                <TextBlock MouseDown="usersButton_MouseDown" x:Name="usersButton" Foreground="White" Background="{x:Null}" Text="ПОЛЬЗОВАТЕЛИ" FontFamily="Arial Black" Opacity="0.9" Padding="10" FontSize="50" Height="70" Margin="50,20,50,0" Width="490"/>
+                <TextBlock MouseDown="chatButton_MouseDown" x:Name="chatButton" Foreground="White" Background="{x:Null}" Text="ЧАТ" FontFamily="Arial Black" Opacity="0.9" FontSize="50" Padding="10" Height="70" Margin="50,20,50,0" Width="140"/>
+                <TextBlock x:Name="materialButton" Foreground="White" Background="{x:Null}" Text="МАТЕРИАЛ" FontFamily="Arial Black" Opacity="0.9" FontSize="50" Padding="10" Height="70" Margin="50,20,50,0" Width="340"/>
+                <Rectangle Fill="Black" Opacity="0.5" Height="200" Margin="0,190,0,0"/>
+                <TextBlock Foreground="White" Background="{x:Null}" Text="НАЗАД" FontFamily="Arial Black" Opacity="0.9" FontSize="50" Padding="10" TextAlignment="Right" Height="70" Margin="200,-280,50,0" MouseDown="TextBlock_MouseDown_1"/>
+            </StackPanel>
+            <StackPanel x:Name="usersList" Width="800" Margin="0,0,0,0" Visibility="Hidden">
+                <ScrollViewer MaxHeight="900" Height="900">
+                    <ItemsControl x:Name="itemsControlUsers" Height="Auto" HorizontalAlignment="Center">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:UserItem/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+                <Button Content="Добавить" x:Name="addUserStackPanel" HorizontalAlignment="Center" FontSize="30" Background="Black" Foreground="AntiqueWhite" Height="50" Margin="0,40,0,0" materialDesign:ButtonAssist.CornerRadius="10" Click="Button_Click_4"/>
+            </StackPanel>
+            <StackPanel Background="Gray" x:Name="chat" Width="800" Margin="-800,0,0,0" Visibility="Hidden">
+                <ScrollViewer Background="White" MaxHeight="900" Height="900">
+                    <ItemsControl x:Name="itemsControlMessage" Height="Auto" HorizontalAlignment="Left">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </ScrollViewer>
+                <TextBox x:Name="sendMessageBox" FontSize="30" Padding="10" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" Background="White" HorizontalAlignment="Center" Width="500" Height="60" Margin="-260,30,0,0"/>
+                <Button Content="Отправить" FontSize="30" HorizontalAlignment="Center" Height="60" FontFamily="Arial Black" Background="Black" Margin="530,-60,0,0" Click="Button_Click_3"/>
+            </StackPanel>
+            <StackPanel x:Name="coursesList" Orientation="Vertical" Width="800" Background="White" Visibility="Hidden" Margin="-800,0,0,0">
+                <ScrollViewer MaxHeight="1000" Height="1000">
+                    <ItemsControl x:Name="itemsControlMain" Height="Auto" HorizontalAlignment="Center">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <local:CourseItem/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </StackPanel>
+            <StackPanel Orientation="Vertical" Width="520" Background="#FF69818D" Margin="0,0,0,0" x:Name="courseStackPanel" Visibility="Visible">
+                <TextBlock x:Name="courseTitle" Text="КУРСЫ" FontFamily="Arial Black" FontSize="70" HorizontalAlignment="Center" Margin="0,40,0,0"/>
+                <TextBox x:Name="courseName" Background="White" Height="60" materialDesign:HintAssist.Hint="НАИМЕНОВАНИЕ" Width="450" materialDesign:TextFieldAssist.TextFieldCornerRadius="20" FontSize="24" Padding="10" VerticalContentAlignment="Center" FontFamily="Arial Black" Margin="0,120,0,0"/>
+                <TextBox x:Name="courseDesc" Background="White" Height="200" materialDesign:HintAssist.Hint="ОПИСАНИЕ"  TextWrapping="Wrap" Width="450" materialDesign:TextFieldAssist.TextFieldCornerRadius="20" FontSize="16" Padding="10" FontFamily="Arial Black" Margin="0,60,0,0"/>
+                <ComboBox x:Name="courseLevel" FontSize="24" materialDesign:HintAssist.Hint="УРОВЕНЬ" FontFamily="Arial Black" Padding="10" VerticalContentAlignment="Center" Background="White" Width="450" Height="60" Margin="0,50,0,0" materialDesign:TextFieldAssist.TextFieldCornerRadius="20">
+                    <ComboBoxItem Content="НАЧАЛЬНЫЙ"/>
+                    <ComboBoxItem Content="ПРОДВИНУТЫЙ"/>
+                </ComboBox>
+                <Button x:Name="addCourseButton" BorderThickness="0" Content="ДОБАВИТЬ" FontFamily="Arial Black" Foreground="Black" Background="{x:Null}" FontSize="30" HorizontalAlignment="Center" Height="50" Opacity="0.6" Margin="0,100,0,0" Click="Button_Click_1"/>
+                <Button x:Name="editCourseButton" BorderThickness="0" Content="РЕДАКТИРОВАТЬ" FontFamily="Arial Black" Foreground="Black" Background="{x:Null}" FontSize="30" HorizontalAlignment="Center" Height="50" Opacity="0.6" Margin="0,30,0,0" Click="Button_Click"/>
+                <Button x:Name="deleteCourseButton" BorderThickness="0" Content="УДАЛИТЬ" FontFamily="Arial Black" Foreground="Black" Background="{x:Null}" FontSize="30" HorizontalAlignment="Center" Height="50" Opacity="0.6" Margin="0,30,0,0" Click="Button_Click_2"/>
+            </StackPanel>
+            <StackPanel Background="#FF69818D" x:Name="addNewUser" Width="520" Margin="-520,0,0,0" Visibility="Hidden">
+                <TextBox Visibility="Hidden" x:Name="userBoxName" Background="White" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="ФИО" Width="380" Margin="0,150,0,0" FontSize="36" materialDesign:TextFieldAssist.TextFieldCornerRadius="20" Padding="10"/>
+                <TextBox Visibility="Hidden" x:Name="userBoxEmail" Background="White" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Почта" Width="380" Margin="0,200,0,0" FontSize="36" materialDesign:TextFieldAssist.TextFieldCornerRadius="20" Padding="10"/>
+                <TextBox Visibility="Hidden" x:Name="userBoxPass" Background="White" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Пароль" Width="380" Margin="0,200,0,0" FontSize="36" materialDesign:TextFieldAssist.TextFieldCornerRadius="20" Padding="10"/>
+                <Button Visibility="Hidden" x:Name="addUserButton" Content="Добавить" Background="Black" materialDesign:ButtonAssist.CornerRadius="10" Margin="0,50,0,0" HorizontalAlignment="Center" FontSize="30" Height="50" Click="addUserButton_Click"/>
+                <Button Visibility="Hidden" x:Name="cancelUserButton" Content="Отмена" Background="Black" materialDesign:ButtonAssist.CornerRadius="10" Margin="0,40,0,0" HorizontalAlignment="Center" FontSize="30" Height="50" Click="cancelUserButton_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
