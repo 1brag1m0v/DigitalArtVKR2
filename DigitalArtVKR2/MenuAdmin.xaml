@@ -67,11 +67,13 @@
                 <TextBlock x:Name="courseTitle" Text="КУРСЫ" FontFamily="Arial Black" FontSize="70" HorizontalAlignment="Center" Margin="0,40,0,0"/>
                 <TextBox x:Name="courseName" Background="White" Height="60" materialDesign:HintAssist.Hint="НАИМЕНОВАНИЕ" Width="450" materialDesign:TextFieldAssist.TextFieldCornerRadius="20" FontSize="24" Padding="10" VerticalContentAlignment="Center" FontFamily="Arial Black" Margin="0,120,0,0"/>
                 <TextBox x:Name="courseDesc" Background="White" Height="200" materialDesign:HintAssist.Hint="ОПИСАНИЕ"  TextWrapping="Wrap" Width="450" materialDesign:TextFieldAssist.TextFieldCornerRadius="20" FontSize="16" Padding="10" FontFamily="Arial Black" Margin="0,60,0,0"/>
+                <TextBox x:Name="courseUrl" Background="White" materialDesign:HintAssist.Hint="URL"  TextWrapping="Wrap" Width="450" materialDesign:TextFieldAssist.TextFieldCornerRadius="20" FontSize="24" Padding="10" FontFamily="Arial Black" Margin="0,60,0,0"/>
                 <ComboBox x:Name="courseLevel" FontSize="24" materialDesign:HintAssist.Hint="УРОВЕНЬ" FontFamily="Arial Black" Padding="10" VerticalContentAlignment="Center" Background="White" Width="450" Height="60" Margin="0,50,0,0" materialDesign:TextFieldAssist.TextFieldCornerRadius="20">
                     <ComboBoxItem Content="НАЧАЛЬНЫЙ"/>
                     <ComboBoxItem Content="ПРОДВИНУТЫЙ"/>
+                    <ComboBoxItem Content="ПРОСТОЙ"/>
                 </ComboBox>
-                <Button x:Name="addCourseButton" BorderThickness="0" Content="ДОБАВИТЬ" FontFamily="Arial Black" Foreground="Black" Background="{x:Null}" FontSize="30" HorizontalAlignment="Center" Height="50" Opacity="0.6" Margin="0,100,0,0" Click="Button_Click_1"/>
+                <Button x:Name="addCourseButton" BorderThickness="0" Content="ДОБАВИТЬ" FontFamily="Arial Black" Foreground="Black" Background="{x:Null}" FontSize="30" HorizontalAlignment="Center" Height="50" Opacity="0.6" Margin="0,30,0,0" Click="Button_Click_1"/>
                 <Button x:Name="editCourseButton" BorderThickness="0" Content="РЕДАКТИРОВАТЬ" FontFamily="Arial Black" Foreground="Black" Background="{x:Null}" FontSize="30" HorizontalAlignment="Center" Height="50" Opacity="0.6" Margin="0,30,0,0" Click="Button_Click"/>
                 <Button x:Name="deleteCourseButton" BorderThickness="0" Content="УДАЛИТЬ" FontFamily="Arial Black" Foreground="Black" Background="{x:Null}" FontSize="30" HorizontalAlignment="Center" Height="50" Opacity="0.6" Margin="0,30,0,0" Click="Button_Click_2"/>
             </StackPanel>

@@ -32,7 +32,7 @@ namespace DigitalArtVKR2
                 }
                 if (message.senderID == -1 || message.senderID == 2)
                 {
-                    rec.Fill = Brushes.Aquamarine;
+                    rec.Fill = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#495C66"));
                 }
             }
             messageUser.Text = message.Message;

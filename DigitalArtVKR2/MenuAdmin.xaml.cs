@@ -79,7 +79,8 @@ namespace DigitalArtVKR2
             itemsControlMain.Items.Clear();
             var courses = await supabase.From<Courses>().Get();
             var list = courses.Models;
-            foreach (var item in list)
+            var sortlist = from i in list orderby i.Id select i;
+            foreach (var item in sortlist)
             {
                 var itemControl = new CourseItem();
                 itemControl.SetItemData(item);
@@ -128,6 +129,7 @@ namespace DigitalArtVKR2
 
         private async void AddCourse()
         {
+            string? url = null;
             int idcor = 0;
             int iddif = 0;
             if ((String.IsNullOrEmpty(courseName.Text) && String.IsNullOrEmpty(courseDesc.Text) && courseLevel.SelectedItem == null)
@@ -151,14 +153,26 @@ namespace DigitalArtVKR2
             }
             else if (courseLevel.Text == "ПРОДВИНУТЫЙ")
             {
+                iddif = 3;
+            }
+            else if (courseLevel.Text == "ПРОСТОЙ")
+            {
                 iddif = 2;
+            }
+            if (String.IsNullOrEmpty(courseUrl.Text))
+            {
+                url = "https://mebeliero.ru/images/photos/medium/no_image.png";
+            }
+            else
+            {
+                url = courseUrl.Text;
             }
             var newCourse = new Courses()
             {
                 Id = idcor + 1,
                 Name = courseName.Text,
                 Description = courseDesc.Text,
-                Photo = "https://w.forfun.com/fetch/c4/c4278a31d1820f1df09421a893726338.jpeg",
+                Photo = url,
                 difficultID = iddif
             };
             await supabase.From<Courses>().Insert(newCourse);

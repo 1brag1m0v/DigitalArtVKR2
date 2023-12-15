@@ -21,7 +21,6 @@ namespace DigitalArtVKR2
     /// </summary>
     public partial class CourseItem : UserControl
     {
-
         public int crsId = 0;
         public string description;
 

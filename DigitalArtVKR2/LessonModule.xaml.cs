@@ -91,9 +91,26 @@ namespace DigitalArtVKR2
             App.ListModules.LoadModules();
         }
 
+        public async void DeleteLesson()
+        {
+            MessageBoxResult result = MessageBox.Show("Вы уверены в том, что хотите удалить урок?", "Предупреждение", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                int id = int.Parse(lessonId.Text);
+                await App.madm.supabase.From<Lessons>().Where(u => u.Id == id).Delete();
+                MessageBox.Show("Урок успешно удален.");
+                App.ListModules.LoadModules();
+            }
+        }
+
         private void lessonEditButton_Click(object sender, RoutedEventArgs e)
         {
             ChangeLessonData();
+        }
+
+        private void lessonDeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            DeleteLesson();
         }
     }
 }

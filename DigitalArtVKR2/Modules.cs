@@ -14,7 +14,7 @@ namespace DigitalArtVKR2
     [Table("Modules")]
     public class Modules : BaseModel
     {
-        [PrimaryKey("id")]
+        [PrimaryKey("id", true)]
         public int Id { get; set; }
 
         [Column("courseID")]

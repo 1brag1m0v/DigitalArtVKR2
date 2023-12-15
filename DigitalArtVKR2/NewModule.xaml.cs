@@ -1,4 +1,5 @@
-﻿using Supabase.Gotrue;
+﻿using Postgrest.Attributes;
+using Supabase.Gotrue;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -45,63 +46,65 @@ namespace DigitalArtVKR2
 
         public async void AddModule()
         {
-            int idmod = 0;
-            int idles = 0;
-            int lessonscount = 0;
-            if ((String.IsNullOrEmpty(moduleName.Text)))
-            {
-                MessageBox.Show("Для добавления модуля нужно указать его название.");
-                return;
-            }
-            var model = await supabase.From<Modules>().Get();
-            var modules = model.Models;
-            foreach ( var module in modules )
-            {
-                if (module.Id > idmod)
-                {
-                    idmod = module.Id + 1;
-                }
-            }
-            var newModule = new Modules()
-            {
-                Id = idmod,
-                courseID = idc,
-                Name = moduleName.Text,
-            };
-            await supabase.From<Modules>().Insert(newModule);
-            var model2 = await supabase.From<Lessons>().Get();
-            var lessons = model2.Models;
-            foreach (var item in lessons)
-            {
-                if (item.Id > idles)
-                {
-                    idles = item.Id + 1;
-                }
-            }
-            if (String.IsNullOrEmpty(moduleLessonsCount.Text))
-            {
-                lessonscount = 1;
-            }
-            else if (int.Parse(moduleLessonsCount.Text) > 0)
-            {
-                lessonscount = int.Parse(moduleLessonsCount.Text);
-            }
-            for (int i = 1; i <= lessonscount; i++)
-            {
-                var newLesson = new Lessons()
-                {
-                    Id = idles,
-                    moduleID = newModule.Id,
-                    Name = "empty",
-                    Type = 1,
-                    Media = "empty",
-                    Text = "empty"
-                };
-                await supabase.From<Lessons>().Insert(newLesson);
-            }
-            MessageBox.Show("Модуль успешно добавлен.");
-            App.ListModules.LoadModules();
-            this.Close();
+                    int idmod = 0;
+                    int idles = 0;
+                    int lessonscount = 0;
+                    if ((String.IsNullOrEmpty(moduleName.Text)))
+                    {
+                        MessageBox.Show("Для добавления модуля нужно указать его название.");
+                        return;
+                    }
+                    var model = await supabase.From<Modules>().Get();
+                    var modules = model.Models;
+                    foreach (var module in modules)
+                    {
+                        if (module.Id > idmod)
+                        {
+                            idmod = module.Id + 1;
+                        }
+                    }
+                    var newModule = new Modules()
+                    {
+                        Id = idmod,
+                        courseID = idc,
+                        Name = moduleName.Text,
+                    };
+                    await supabase.From<Modules>().Insert(newModule);
+                    var model2 = await supabase.From<Lessons>().Get();
+                    var lessons = model2.Models;
+
+                    foreach (var item in lessons)
+                    {
+                        if (item.Id > idles)
+                        {
+                            idles = item.Id + 1;
+                        }
+                    }
+                    if (String.IsNullOrEmpty(moduleLessonsCount.Text))
+                    {
+                        lessonscount = 1;
+                    }
+                    else if (int.Parse(moduleLessonsCount.Text) > 0)
+                    {
+                        lessonscount = int.Parse(moduleLessonsCount.Text);
+                    }
+                    for (int i = 1; i <= lessonscount; i++)
+                    {
+                        var newLesson = new Lessons()
+                        {
+                            Id = idles,
+                            moduleID = newModule.Id,
+                            Name = "empty",
+                            Type = 1,
+                            Media = "empty",
+                            Text = "empty"
+                        };
+                        idles++;
+                        await supabase.From<Lessons>().Insert(newLesson);
+                    }
+                    MessageBox.Show("Модуль успешно добавлен.");
+                    App.ListModules.LoadModules();
+                    this.Close();
         }
 
         private void lessonEditButton_Click(object sender, RoutedEventArgs e)

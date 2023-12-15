@@ -34,7 +34,8 @@ namespace DigitalArtVKR2
             itemsControlModules.Items.Clear();
             var model = await App.madm.supabase.From<Modules>().Get();
             var modules = model.Models;
-            foreach (var item in modules)
+            var sortmodules = from i in modules orderby i.Id select i;
+            foreach (var item in sortmodules)
             {
                 if (item.courseID == courseId)
                 {

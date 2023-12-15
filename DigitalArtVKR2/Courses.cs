@@ -13,7 +13,7 @@ namespace DigitalArtVKR2
     [System.ComponentModel.DataAnnotations.Schema.Table("Courses")]
     public class Courses : BaseModel
     {
-        [PrimaryKey("id", false)]
+        [PrimaryKey("id", true)]
         public int Id { get; set; }
 
         [Column("name")]

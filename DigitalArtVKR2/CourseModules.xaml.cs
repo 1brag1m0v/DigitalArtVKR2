@@ -35,7 +35,8 @@ namespace DigitalArtVKR2
             itemsControlLessons.Items.Clear();
             var model = await App.madm.supabase.From<Lessons>().Get();
             var lessons = model.Models;
-            foreach (var item in lessons)
+            var _l = lessons.OrderBy(lesson => lesson.Id).ToList();
+            foreach (var item in _l)
             {
                 if (item.moduleID == modId)
                 {
@@ -53,22 +54,48 @@ namespace DigitalArtVKR2
 
         public async void CreateOneEmptyLesson()
         {
+            int idl = 0;
+            var model = await App.madm.supabase.From<Lessons>().Get();
+            var lessons = model.Models;
+            foreach (var item in lessons)
+            {
+                if (item.Id > idl)
+                {
+                    idl = item.Id + 1;
+                }
+            }
             var newLesson = new Lessons()
             {
-                Id = 24,
+                Id = idl,
                 moduleID = modId,
                 Name = "empty",
                 Type = 1,
                 Media = "empty",
                 Text = "empty"
             };
-            await App.madm.supabase.From<Lessons>().Insert(newLesson);
+            await App.madm.supabase.From<Lessons>().Upsert(newLesson);
             LoadLessons();
             MessageBox.Show("Пустой урок добавлен.");
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             CreateOneEmptyLesson();
+        }
+
+        public async void DeleteModule()
+        {
+            MessageBoxResult result = MessageBox.Show("Вы уверены в том, что хотите удалить данный модуль?", "Предупреждение", MessageBoxButton.YesNo);
+            if (result == MessageBoxResult.Yes)
+            {
+                await App.madm.supabase.From<Modules>().Where(u => u.Id == modId).Delete();
+                MessageBox.Show("Модуль успешно удален.");
+                App.ListModules.LoadModules();
+            }
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            DeleteModule();
         }
     }
 }
