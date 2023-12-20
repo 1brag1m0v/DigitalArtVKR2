@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+using Path = System.IO.Path;
 
 namespace DigitalArtVKR2
 {
@@ -20,20 +23,30 @@ namespace DigitalArtVKR2
     /// </summary>
     public partial class LessonModule : UserControl
     {
+        private string pdflesson;
+        private string pdfname;
+
         public LessonModule()
         {
             InitializeComponent();
         }
 
-        public void SetLessonData(Lessons lesson)
+        public async void SetLessonData(Lessons lesson)
         {
             if (lesson.Media != "empty")
             {
-                BitmapImage bitmapImage = new BitmapImage();
-                bitmapImage.BeginInit();
-                bitmapImage.UriSource = new Uri(lesson.Media);
-                bitmapImage.EndInit();
-                lessonMedia.Source = bitmapImage;
+                try
+                {
+                    BitmapImage bitmapImage = new BitmapImage();
+                    bitmapImage.BeginInit();
+                    bitmapImage.UriSource = new Uri(lesson.Media);
+                    bitmapImage.EndInit();
+                    lessonMedia.Source = bitmapImage;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("фывфыв");
+                }
             }
             else
             {
@@ -45,8 +58,20 @@ namespace DigitalArtVKR2
             }
             lessonId.Text = lesson.Id.ToString();
             lessonUrl.Text = lesson.Media;
+            int count = 0;
+            var models = await App.madm.supabase.From<PdfLesson>().Get();
+            var links = models.Models;
+            foreach (var item in links)
+            {
+                if (item.idLesson == int.Parse(lessonId.Text))
+                {
+                    count++;
+                    pdfListView.Items.Add(item.nameFile);
+                }
+            }
+            nameFileAdmin.Text = "Уроков загружено: " + count.ToString();
             lessonName.Text = lesson.Name;
-            lessonMain.Text = lesson.Text;
+            //lessonMain.Text = lesson.Text;
             if (lesson.Type == 1)
             {
                 lessonComboBox.Text = "Лекция";
@@ -111,6 +136,96 @@ namespace DigitalArtVKR2
         private void lessonDeleteButton_Click(object sender, RoutedEventArgs e)
         {
             DeleteLesson();
+        }
+
+        public async void LoadFile()
+        {
+            try
+            {
+                OpenFileDialog saveFileDialog = new OpenFileDialog();
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    int pdfid = 0;
+                    var basePath = Path.GetDirectoryName(saveFileDialog.FileName);
+                    var path = Path.Combine(basePath, saveFileDialog.FileName);
+                    await App.madm.supabase.Storage.From("docs/lessons").Upload(path, Path.GetFileName(saveFileDialog.FileName));
+                    var models = await App.madm.supabase.From<PdfLesson>().Get();
+                    var list = models.Models;
+                    var sortlist = from i in list orderby i.Id select i;
+                    foreach (var item in sortlist)
+                    {
+                            pdfid = item.Id + 1;
+                    }
+                    var newpdf = new PdfLesson()
+                    {
+                        Id = pdfid,
+                        idLesson = int.Parse(lessonId.Text),
+                        pdfLink = App.madm.supabase.Storage.From("docs/lessons").GetPublicUrl(Path.GetFileName(saveFileDialog.FileName)),
+                        nameFile = Path.GetFileName(saveFileDialog.FileName),
+                };
+                    await App.madm.supabase.From<PdfLesson>().Insert(newpdf);
+                    MessageBox.Show("Загрузка успешна." + App.madm.supabase.Storage.From("docs/lessons").GetPublicUrl(Path.GetFileName(saveFileDialog.FileName)));
+                    pdfname = Path.GetFileName(saveFileDialog.FileName);
+                    nameFileAdmin.Text = Path.GetFileName(saveFileDialog.FileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ошибка при загрузке." + ex);
+            }
+        }
+
+        public async void DeleteFile()
+        {
+            try
+            {
+                if (pdflesson == null)
+                {
+                    MessageBox.Show("Для удаления файла следует выбрать его.");
+                    return;
+                }
+                int id = int.Parse(lessonId.Text);
+                await App.madm.supabase.From<PdfLesson>().Where(u => u.idLesson == id && u.nameFile == pdflesson).Delete();
+                await App.madm.supabase.Storage.From("docs").Remove(new List<string> { $"lessons/{pdflesson}" });
+                MessageBox.Show("Файл удален успешно." + pdflesson);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("фывфыв" + ex);
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            LoadFile();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            DeleteFile();
+        }
+
+        private void pdfListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            pdflesson = pdfListView.SelectedItem.ToString();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            TestsWindow testsWindow = new TestsWindow(int.Parse(lessonId.Text));
+            testsWindow.Show();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            DeleteTests deleteTests = new DeleteTests(int.Parse(lessonId.Text));
+            deleteTests.Show();
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            CheckPractices checkPractices = new CheckPractices(int.Parse(lessonId.Text));
+            checkPractices.Show();
         }
     }
 }

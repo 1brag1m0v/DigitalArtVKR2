@@ -1,0 +1,26 @@
+﻿<Window x:Class="DigitalArtVKR2.CheckPractices"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DigitalArtVKR2"
+        mc:Ignorable="d"
+        Title="CheckPractices" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel Background="#FF7F919A" Orientation="Vertical">
+            <DataGrid SelectionChanged="listViewPractices_SelectionChanged" Foreground="Black" x:Name="listViewPractices" Height="300" HorizontalAlignment="Center" Width="770" Margin="0,20,0,0" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Header="Имя ученика" Binding="{Binding nameUser}"/>
+                    <DataGridTextColumn Width="*" Header="Ответ" Binding="{Binding text}"/>
+                    <DataGridTextColumn Width="*" Header="Прикрепленные файлы" Binding="{Binding fileLinks}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Orientation="Horizontal" Height="115">
+                <Button Content="Подтвердить ответ" Margin="150,0,30,0" HorizontalAlignment="Center" Background="#495C66" BorderThickness="0" Click="Button_Click_1"/>
+                <Button Content="Отклонить ответ" Margin="0,0,30,0" HorizontalAlignment="Center" Background="#495C66" BorderThickness="0" Click="Button_Click"/>
+                <Button Content="Скачать файлы" Margin="0,0,0,0" HorizontalAlignment="Center" Background="#495C66" BorderThickness="0" Click="Button_Click_2"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
