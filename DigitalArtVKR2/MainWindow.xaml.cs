@@ -29,9 +29,9 @@ namespace DigitalArtVKR2
         {
             try
             {
-                var url = Environment.GetEnvironmentVariable("https://gaxlrywbsvtamlbizmjt.supabase.co");
+                var url = Environment.GetEnvironmentVariable("sup");
                 var key = Environment.GetEnvironmentVariable("eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdheGxyeXdic3Z0YW1sYml6bWp0Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDIyNzU4NTYsImV4cCI6MjAxNzg1MTg1Nn0.7bVx2U7_9xGbHTQQFfMEfv3OjsE00zfj4k9zSdvepoY");
-
+                
                 var options = new Supabase.SupabaseOptions
                 {
                     AutoConnectRealtime = true

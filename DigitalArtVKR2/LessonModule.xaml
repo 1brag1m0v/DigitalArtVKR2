@@ -6,31 +6,32 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DigitalArtVKR2"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="950">
     <Grid>
         <TextBlock x:Name="lessonId" Visibility="Hidden"/>
-        <Rectangle Fill="White" Width="600" Height="300" RadiusX="20" RadiusY="20"/>
-        <StackPanel Margin="25" Width="600" Height="300" Orientation="Vertical">
-            <Image Source="/Image1.png" x:Name="lessonMedia" Height="200" Width="250" Stretch="Fill" HorizontalAlignment="Center" Margin="-320,45,0,0"/>
-            <TextBox x:Name="lessonUrl" Background="#495C66" Foreground="White" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="URL" HorizontalContentAlignment="Center" Width="140" Height="26" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" Margin="-310,-450,0,0"/>
-            <TextBox Visibility="Visible" x:Name="lessonName" TextWrapping="Wrap" Foreground="White" Background="#495C66" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Название урока" HorizontalContentAlignment="Center" Padding="5" Width="250" Margin="200,-240,0,250"/>
-            <TextBlock x:Name="nameFileAdmin" Visibility="Visible" Text="Уроков загружено: 0" TextWrapping="Wrap" Foreground="Black" Background="White" HorizontalAlignment="Center" TextAlignment="Center" Padding="5" Width="250" Margin="200,-240,0,250"/>
-            <ListView x:Name="pdfListView" Margin="200,-350,0,0" Width="200" Height="100" HorizontalAlignment="Center" SelectionChanged="pdfListView_SelectionChanged">
+        <Rectangle Fill="White" Width="800" Height="300" RadiusX="20" RadiusY="20"/>
+        <StackPanel Margin="25" Width="800" Height="300" Orientation="Vertical">
+            <Image Source="/Image1.png" x:Name="lessonMedia" Height="200" Width="250" Stretch="Fill" HorizontalAlignment="Center" Margin="-500,45,0,0"/>
+            <TextBox FontFamily="Arial Black" x:Name="lessonUrl" Background="#495C66" Foreground="White" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="URL" HorizontalContentAlignment="Center" Width="140" Height="26" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" Margin="-500,-450,0,0"/>
+            <TextBox FontFamily="Arial Black" Visibility="Visible" x:Name="lessonName" TextWrapping="Wrap" Foreground="White" Background="#495C66" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Название урока" HorizontalContentAlignment="Center" Padding="5" Width="250" Margin="30,-240,0,250"/>
+            <TextBlock x:Name="nameFileAdmin" Visibility="Visible" Text="Уроков загружено: 0" TextWrapping="Wrap" Foreground="Black" Background="White" HorizontalAlignment="Center" TextAlignment="Center" Padding="5" Width="250" Margin="30,-240,0,250"/>
+            <ListView FontFamily="Arial Black" x:Name="pdfListView" Margin="30,-350,0,0" Width="200" Height="100" HorizontalAlignment="Center" SelectionChanged="pdfListView_SelectionChanged">
                 
             </ListView>
-            <Button Margin="210,-110,0,250" Content="Проверить работы" Background="#495C66" Foreground="White" Width="180" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="Button_Click_4"/>
-            <Button Margin="-440,-230,0,250" Content="Удалить тесты" FontSize="12" Background="#495C66" Foreground="White" Width="120" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="Button_Click_3"/>
-            <Button Margin="-180,-280,0,250" Content="Добавить тест" FontSize="12" Background="#495C66" Foreground="White" Width="120" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="Button_Click_2"/>
-            <Button Margin="80,-280,0,250" Content="Загрузить" Background="#495C66" Foreground="White" Width="120" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="Button_Click"/>
-            <Button Margin="340,-280,0,250" Content="Удалить файл" Background="#495C66" Foreground="White" Width="120" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="Button_Click_1"/>
+            <Button FontFamily="Arial Black" Margin="30,-110,0,250" Content="Проверить работы" Background="#495C66" Foreground="White" Width="180" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="Button_Click_4"/>
+            <Button FontFamily="Arial Black" x:Name="lesDeleteButton" Margin="-410,-230,0,250" Content="Удалить тесты" FontSize="12" Background="#495C66" Foreground="White" Width="140" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="Button_Click_3"/>
+            <Button FontFamily="Arial Black" x:Name="lesAddButton" Margin="-110,-280,0,250" Content="Добавить тест" FontSize="12" Background="#495C66" Foreground="White" Width="140" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="Button_Click_2"/>
+            <Button FontFamily="Arial Black" x:Name="loadFile" Margin="170,-280,0,250" Content="Загрузить" Background="#495C66" Foreground="White" Width="120" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="Button_Click"/>
+            <Button FontFamily="Arial Black" x:Name="deleteFile" Margin="460,-280,0,250" Content="Удалить файл" Background="#495C66" Foreground="White" Width="150" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="Button_Click_1"/>
             <TextBox Visibility="Hidden" x:Name="lessonMain" TextWrapping="Wrap" Foreground="White" Background="#495C66" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" HorizontalAlignment="Center" materialDesign:HintAssist.Hint="Наполнение" Padding="10" Width="250" Height="120" Margin="200,-235,0,250"/>
-            <ComboBox Visibility="Hidden" x:Name="lessonComboBox" Margin="200,-235,0,250" Foreground="Black" Background="#495C66" Width="250" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" materialDesign:HintAssist.Hint="Тип урока" Padding="5" HorizontalContentAlignment="Center">
+            <ComboBox FontFamily="Arial Black" Visibility="Visible" SelectedIndex="0" x:Name="lessonComboBox" Margin="550,-905,0,250" BorderThickness="1" Foreground="Black" Background="White" Width="150" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" materialDesign:HintAssist.Hint="Тип урока" Padding="5" HorizontalContentAlignment="Center">
                 <ComboBoxItem Content="Лекция"/>
                 <ComboBoxItem Content="Видеоматериал"/>
                 <ComboBoxItem Content="Тест"/>
+                <ComboBoxItem Content="Практическая"/>
             </ComboBox>
-            <Button Visibility="Hidden" x:Name="lessonEditButton"  Margin="70,-230,0,250" Content="Изменить" Background="#495C66" Foreground="White" Width="120" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="lessonEditButton_Click"/>
-            <Button x:Name="lessonDeleteButton"  Margin="220,-280,0,250" Content="Удалить" Background="#495C66" Foreground="White" Width="120" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="lessonDeleteButton_Click"/>
+            <Button FontFamily="Arial Black" Visibility="Visible" x:Name="lessonEditButton"  Margin="550,-800,0,250" Content="Изменить" Background="#495C66" Foreground="White" Width="120" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="lessonEditButton_Click"/>
+            <Button FontFamily="Arial Black" x:Name="lessonDeleteButton"  Margin="550,-700,0,250" Content="Удалить" Background="#495C66" Foreground="White" Width="120" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="lessonDeleteButton_Click"/>
         </StackPanel>
     </Grid>
 </UserControl>

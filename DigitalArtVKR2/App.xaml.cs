@@ -11,6 +11,7 @@ namespace DigitalArtVKR2
     {
         public static MenuAdmin madm { get; set; }
         public static ListModules ListModules { get; set; }
+        public static CourseModules CourseModules { get; set; }
     }
 
 }

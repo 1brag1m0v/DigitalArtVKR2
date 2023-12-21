@@ -9,7 +9,7 @@
         Title="CheckPractices" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel Background="#FF7F919A" Orientation="Vertical">
-            <DataGrid SelectionChanged="listViewPractices_SelectionChanged" Foreground="Black" x:Name="listViewPractices" Height="300" HorizontalAlignment="Center" Width="770" Margin="0,20,0,0" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid FontFamily="Arial Black" SelectionChanged="listViewPractices_SelectionChanged" Foreground="Black" x:Name="listViewPractices" Height="300" HorizontalAlignment="Center" Width="770" Margin="0,20,0,0" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Width="*" Header="Имя ученика" Binding="{Binding nameUser}"/>
                     <DataGridTextColumn Width="*" Header="Ответ" Binding="{Binding text}"/>
@@ -17,9 +17,9 @@
                 </DataGrid.Columns>
             </DataGrid>
             <StackPanel Orientation="Horizontal" Height="115">
-                <Button Content="Подтвердить ответ" Margin="150,0,30,0" HorizontalAlignment="Center" Background="#495C66" BorderThickness="0" Click="Button_Click_1"/>
-                <Button Content="Отклонить ответ" Margin="0,0,30,0" HorizontalAlignment="Center" Background="#495C66" BorderThickness="0" Click="Button_Click"/>
-                <Button Content="Скачать файлы" Margin="0,0,0,0" HorizontalAlignment="Center" Background="#495C66" BorderThickness="0" Click="Button_Click_2"/>
+                <Button FontFamily="Arial Black" Content="Подтвердить ответ" Margin="110,0,30,0" HorizontalAlignment="Center" Background="#495C66" BorderThickness="0" Click="Button_Click_1"/>
+                <Button FontFamily="Arial Black" Content="Отклонить ответ" Margin="0,0,30,0" HorizontalAlignment="Center" Background="#495C66" BorderThickness="0" Click="Button_Click"/>
+                <Button FontFamily="Arial Black" Content="Скачать файлы" Margin="0,0,0,0" HorizontalAlignment="Center" Background="#495C66" BorderThickness="0" Click="Button_Click_2"/>
             </StackPanel>
         </StackPanel>
     </Grid>

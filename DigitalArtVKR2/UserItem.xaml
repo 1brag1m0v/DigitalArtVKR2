@@ -12,14 +12,14 @@
         <StackPanel Margin="40" Width="500" Height="300" Orientation="Vertical">
             <TextBlock x:Name="userId" Text="1" Visibility="Hidden"/>
             <Image x:Name="userImage" Source="/Image1.png" Width="200" Height="200" Stretch="Fill" HorizontalAlignment="Center" Margin="-200,15,0,0"/>
-            <TextBlock FontFamily="Arial Black" Text="ФИО" HorizontalAlignment="Center" Margin="240,-200,0,200"/>
+            <TextBlock FontFamily="Arial Black" Foreground="White" Text="ФИО" HorizontalAlignment="Center" Margin="240,-200,0,200"/>
             <TextBox x:Name="userName" Background="White" FontSize="14" HorizontalAlignment="Center" Margin="240,-190,0,200" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" Padding="5" Width="200"/>
-            <TextBlock FontFamily="Arial Black" Text="Электронная почта" HorizontalAlignment="Center" Margin="240,-190,0,200"/>
+            <TextBlock FontFamily="Arial Black" Foreground="White" Text="Электронная почта" HorizontalAlignment="Center" Margin="240,-190,0,200"/>
             <TextBox x:Name="userEmail" Background="White" FontSize="14" HorizontalAlignment="Center" Margin="240,-190,0,200" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" Padding="5" Width="200"/>
-            <TextBlock FontFamily="Arial Black" Text="Пароль" HorizontalAlignment="Center" Margin="240,-190,0,200"/>
+            <TextBlock FontFamily="Arial Black" Foreground="White" Text="Пароль" HorizontalAlignment="Center" Margin="240,-190,0,200"/>
             <TextBox x:Name="userPass" Background="White" FontSize="14" HorizontalAlignment="Center" Margin="240,-190,0,200" materialDesign:TextFieldAssist.TextFieldCornerRadius="10" Padding="5" Width="200"/>
-            <Button Content="Редактировать" Margin="-120,-285,0,0" HorizontalAlignment="Center" Background="#C2D8E2" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" materialDesign:ButtonAssist.CornerRadius="10" Click="Button_Click"/>
-            <Button Content="Удалить" Margin="150,-285,0,0" HorizontalAlignment="Center" Background="#C2D8E2" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" materialDesign:ButtonAssist.CornerRadius="10" Click="Button_Click_1"/>
+            <Button Content="Редактировать" FontFamily="Arial Black" Margin="-120,-285,0,0" HorizontalAlignment="Center" Background="#C2D8E2" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" materialDesign:ButtonAssist.CornerRadius="10" Click="Button_Click"/>
+            <Button Content="Удалить" FontFamily="Arial Black" Margin="150,-285,0,0" HorizontalAlignment="Center" Background="#C2D8E2" Foreground="Black" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" materialDesign:ButtonAssist.CornerRadius="10" Click="Button_Click_1"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -23,8 +23,9 @@ namespace DigitalArtVKR2
     /// </summary>
     public partial class LessonModule : UserControl
     {
-        private string pdflesson;
+        private string? pdflesson;
         private string pdfname;
+        private int count;
 
         public LessonModule()
         {
@@ -58,7 +59,7 @@ namespace DigitalArtVKR2
             }
             lessonId.Text = lesson.Id.ToString();
             lessonUrl.Text = lesson.Media;
-            int count = 0;
+            count = 0;
             var models = await App.madm.supabase.From<PdfLesson>().Get();
             var links = models.Models;
             foreach (var item in links)
@@ -84,14 +85,23 @@ namespace DigitalArtVKR2
             {
                 lessonComboBox.Text = "Видеоматериал";
             }
+            else if (lesson.Type == 4)
+            {
+                lessonComboBox.Text = "Практическая";
+            }
+            if (lessonComboBox.Text != "Тест")
+            {
+                lesAddButton.IsEnabled = false;
+                lesDeleteButton.IsEnabled = false;
+            }
         }
 
         private async void ChangeLessonData()
         {
             var model = await App.madm.supabase.From<Lessons>().Get();
             var lessons = model.Models;
-            if ((String.IsNullOrEmpty(lessonName.Text) && String.IsNullOrEmpty(lessonMain.Text) && lessonComboBox.SelectedItem == null)
-                || (String.IsNullOrEmpty(lessonName.Text) || String.IsNullOrEmpty(lessonMain.Text) || lessonComboBox.SelectedItem == null))
+            if ((String.IsNullOrEmpty(lessonName.Text) && lessonComboBox.SelectedItem == null)
+                || (String.IsNullOrEmpty(lessonName.Text) || lessonComboBox.SelectedItem == null))
             {
                 MessageBox.Show("Урок должен содержать название, наполнение и тип урока.");
                 return;
@@ -111,6 +121,10 @@ namespace DigitalArtVKR2
             else if (lessonComboBox.Text == "Видеоматериал")
             {
                 await App.madm.supabase.From<Lessons>().Where(u => u.Id == id).Set(u => u.Type, 3).Update();
+            }
+            else if (lessonComboBox.Text == "Практическая")
+            {
+                await App.madm.supabase.From<Lessons>().Where(u => u.Id == id).Set(u => u.Type, 4).Update();
             }
             MessageBox.Show("Урок успешно отредактирован.");
             App.ListModules.LoadModules();
@@ -164,9 +178,22 @@ namespace DigitalArtVKR2
                         nameFile = Path.GetFileName(saveFileDialog.FileName),
                 };
                     await App.madm.supabase.From<PdfLesson>().Insert(newpdf);
-                    MessageBox.Show("Загрузка успешна." + App.madm.supabase.Storage.From("docs/lessons").GetPublicUrl(Path.GetFileName(saveFileDialog.FileName)));
+                    MessageBox.Show("Загрузка успешна.");
+                    pdflesson = null;
                     pdfname = Path.GetFileName(saveFileDialog.FileName);
-                    nameFileAdmin.Text = Path.GetFileName(saveFileDialog.FileName);
+                    count = 0;
+                    pdfListView.Items.Clear();
+                    var models2 = await App.madm.supabase.From<PdfLesson>().Get();
+                    var linkss = models2.Models;
+                    foreach (var item in linkss)
+                    {
+                        if (item.idLesson == int.Parse(lessonId.Text))
+                        {
+                            count++;
+                            pdfListView.Items.Add(item.nameFile);
+                        }
+                    }
+                    nameFileAdmin.Text = "Уроков загружено: " + count.ToString();
                 }
             }
             catch (Exception ex)
@@ -187,7 +214,20 @@ namespace DigitalArtVKR2
                 int id = int.Parse(lessonId.Text);
                 await App.madm.supabase.From<PdfLesson>().Where(u => u.idLesson == id && u.nameFile == pdflesson).Delete();
                 await App.madm.supabase.Storage.From("docs").Remove(new List<string> { $"lessons/{pdflesson}" });
-                MessageBox.Show("Файл удален успешно." + pdflesson);
+                MessageBox.Show("Файл удален успешно.");
+                count = 0;
+                pdfListView.Items.Clear();
+                var models2 = await App.madm.supabase.From<PdfLesson>().Get();
+                var linkss = models2.Models;
+                foreach (var item in linkss)
+                {
+                    if (item.idLesson == int.Parse(lessonId.Text))
+                    {
+                        count++;
+                        pdfListView.Items.Add(item.nameFile);
+                    }
+                }
+                nameFileAdmin.Text = "Уроков загружено: " + count.ToString();
             }
             catch (Exception ex)
             {
@@ -207,7 +247,10 @@ namespace DigitalArtVKR2
 
         private void pdfListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            pdflesson = pdfListView.SelectedItem.ToString();
+            if (pdfListView.SelectedItem != null)
+            {
+                pdflesson = pdfListView.SelectedItem.ToString();
+            }
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
