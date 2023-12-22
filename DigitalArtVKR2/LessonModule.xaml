@@ -30,6 +30,7 @@
                 <ComboBoxItem Content="Тест"/>
                 <ComboBoxItem Content="Практическая"/>
             </ComboBox>
+            <Button FontFamily="Arial Black" Visibility="Visible" Margin="550,-1000,0,250" Content="Наполнение" Background="#495C66" Foreground="White" Width="140" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="Button_Click_5"/>
             <Button FontFamily="Arial Black" Visibility="Visible" x:Name="lessonEditButton"  Margin="550,-800,0,250" Content="Изменить" Background="#495C66" Foreground="White" Width="120" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="lessonEditButton_Click"/>
             <Button FontFamily="Arial Black" x:Name="lessonDeleteButton"  Margin="550,-700,0,250" Content="Удалить" Background="#495C66" Foreground="White" Width="120" materialDesign:ButtonAssist.CornerRadius="10" Height="30" Click="lessonDeleteButton_Click"/>
         </StackPanel>

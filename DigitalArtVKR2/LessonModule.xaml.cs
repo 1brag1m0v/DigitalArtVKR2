@@ -270,5 +270,11 @@ namespace DigitalArtVKR2
             CheckPractices checkPractices = new CheckPractices(int.Parse(lessonId.Text));
             checkPractices.Show();
         }
+
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            EditText editText = new EditText(int.Parse(lessonId.Text));
+            editText.Show();
+        }
     }
 }

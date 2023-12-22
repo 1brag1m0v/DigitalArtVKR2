@@ -100,7 +100,7 @@ namespace DigitalArtVKR2
             int i = 1;
             foreach (var item in list)
             {
-                if (item != null)
+                if (!String.IsNullOrEmpty(item))
                 {
                     answer.text = item;
                     answer.id = i;
